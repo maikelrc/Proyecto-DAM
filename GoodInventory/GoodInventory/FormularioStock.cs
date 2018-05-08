@@ -40,13 +40,13 @@ namespace GoodInventory
         {
             fi = new FormularioInicio();
             fi.ShowDialog();
-            if (fi.baseDeDatos == "")
+            if (fi.conexion.Database == "")
             {
                 CerrarPrograma();
             }
             else
             {
-                baseDeDatos = fi.baseDeDatos;
+                baseDeDatos = fi.conexion.Database;
             }
         }
 
@@ -88,13 +88,13 @@ namespace GoodInventory
         /// </summary>
         private void ComprobarCargarBaseDeDatos()
         {
-            if (fi.baseDeDatos != "")
+            if (fi.conexion.Database != "")
             {
-                baseDeDatos = fi.baseDeDatos;
+                baseDeDatos = fi.conexion.Database;
             }
             else
             {
-                fi.baseDeDatos = baseDeDatos;
+                fi.conexion.ChangeDatabase(baseDeDatos);
             }
         }
 

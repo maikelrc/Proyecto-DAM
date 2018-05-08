@@ -123,8 +123,10 @@
             this.Name = "FormularioInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.Load += new System.EventHandler(this.FormularioInicio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

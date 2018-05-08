@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,9 +24,21 @@ namespace GoodInventory
         }
 
         /// <summary>
-        /// Nombre de la base de datos.
+        /// Conexión al proveedor de datos OLE DB. NET.
         /// </summary>
-        public string baseDeDatos;
+        public OleDbConnection conexion;
+
+        private void AbrirConexion(string bd)
+        {
+            try
+            {
+                string strConnection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + bd + ";";
+                conexion = new OleDbConnection(strConnection);
+                btnAbrirInventario.Text = conexion.Database;
+                conexion.Open();
+            }
+            catch (OleDbException) { }
+        }
 
         /// <summary>
         /// Establece a la variable "baseDeDatos" el nombre de una nueva base de datos que deseamos crear y además la crea.
@@ -42,7 +55,7 @@ namespace GoodInventory
             try
             {
                 s = new StreamWriter(this.saveFileDialog1.FileName);
-                baseDeDatos = this.saveFileDialog1.FileName;
+                AbrirConexion(this.saveFileDialog1.FileName);
                 this.Hide();
             }
             catch (ArgumentException) { }
@@ -62,10 +75,10 @@ namespace GoodInventory
             this.openFileDialog1.InitialDirectory = "C:\\";
             this.openFileDialog1.Filter = "access(*.accdb) | *.accdb";
             this.openFileDialog1.ShowDialog();
-            baseDeDatos = this.openFileDialog1.FileName;
-            if (baseDeDatos == "openFileDialog1")
+            AbrirConexion(this.openFileDialog1.FileName);
+            if (conexion.Database == "openFileDialog1")
             {
-                baseDeDatos = "";
+                conexion.ChangeDatabase("");
             }
             else
             {
@@ -91,6 +104,16 @@ namespace GoodInventory
         private void btnAbrirInventario_Click(object sender, EventArgs e)
         {
             AbrirInventario(this.openFileDialog1);
+        }
+
+        /// <summary>
+        /// Carga diferentes datos antes de ejecutar el formulario.
+        /// </summary>
+        /// <param name="sender">El formulario</param>
+        /// <param name="e">El evento</param>
+        private void FormularioInicio_Load(object sender, EventArgs e)
+        {
+            AbrirConexion("C:\\Users\\maike\\OneDrive\\Documentos\\GitHub\\Proyecto-DAM\\GoodInventory\\bd.accdb");
         }
     }
 }
