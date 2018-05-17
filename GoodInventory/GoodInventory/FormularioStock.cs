@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,9 @@ namespace GoodInventory
         /// </summary>
         private FormularioInicio fi;
 
+        private OleDbCommand comando;
+        private OleDbDataReader lector;
+
         /// <summary>
         /// Nombre de la base de datos.
         /// </summary>
@@ -40,14 +44,15 @@ namespace GoodInventory
         {
             fi = new FormularioInicio();
             fi.ShowDialog();
-            if (fi.conexion.Database == "")
-            {
-                CerrarPrograma();
-            }
-            else
-            {
-                baseDeDatos = fi.conexion.Database;
-            }
+            ActualizarListaTablas();
+            //if (fi.conexion.DataSource == "")
+            //{
+            //    CerrarPrograma();
+            //}
+            //else
+            //{
+            //    baseDeDatos = fi.conexion.Database;
+            //}
         }
 
         /// <summary>
@@ -58,7 +63,6 @@ namespace GoodInventory
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fi.NuevoInventario(fi.saveFileDialog1);
-            ComprobarCargarBaseDeDatos();
         }
 
         /// <summary>
@@ -69,7 +73,6 @@ namespace GoodInventory
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fi.AbrirInventario(fi.openFileDialog1);
-            ComprobarCargarBaseDeDatos();
         }
 
         /// <summary>
@@ -82,21 +85,21 @@ namespace GoodInventory
             CerrarPrograma();
         }
 
-        /// <summary>
-        /// Comprueba si se intenta crear/cargar una nueva base de datos, si no se crea/carga correctamente se
-        /// reestablece el nombre de la base de datos.
-        /// </summary>
-        private void ComprobarCargarBaseDeDatos()
-        {
-            if (fi.conexion.Database != "")
-            {
-                baseDeDatos = fi.conexion.Database;
-            }
-            else
-            {
-                fi.conexion.ChangeDatabase(baseDeDatos);
-            }
-        }
+        ///// <summary>
+        ///// Comprueba si se intenta crear/cargar una nueva base de datos, si no se crea/carga correctamente se
+        ///// reestablece el nombre de la base de datos.
+        ///// </summary>
+        //private void ComprobarCargarBaseDeDatos()
+        //{
+        //    if (fi.conexion.Database != "")
+        //    {
+        //        baseDeDatos = fi.conexion.Database;
+        //    }
+        //    else
+        //    {
+        //        fi.conexion.ChangeDatabase(baseDeDatos);
+        //    }
+        //}
 
         /// <summary>
         /// Cierra la aplicación.
@@ -107,6 +110,22 @@ namespace GoodInventory
             fi.Close();
             this.Dispose();
             this.Close();
+        }
+
+        private void ActualizarListaTablas()
+        {
+            lbTablas.Items.Clear();
+            DataTable dt = fi.conexion.GetSchema("Tables");
+            foreach (DataRow row in dt.Rows)
+            {
+                if ((string)row[3] == "TABLE")
+                    lbTablas.Items.Add((string)row[2]);
+            }
+        }
+
+        private void lbTablas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

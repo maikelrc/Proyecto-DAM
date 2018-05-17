@@ -28,16 +28,19 @@ namespace GoodInventory
         /// </summary>
         public OleDbConnection conexion;
 
-        private void AbrirConexion(string bd)
+        /// <summary>
+        /// Abre una nueva conexión a la base de datos indicada por parámetro.
+        /// </summary>
+        /// <param name="bd">Nombre de la base de datos</param>
+        public void AbrirConexion(string bd)
         {
             try
             {
-                string strConnection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + bd + ";";
+                string strConnection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + bd + ";User ID=admin";
                 conexion = new OleDbConnection(strConnection);
-                btnAbrirInventario.Text = conexion.Database;
                 conexion.Open();
             }
-            catch (OleDbException) { }
+            catch (OleDbException) { }   
         }
 
         /// <summary>
@@ -76,11 +79,8 @@ namespace GoodInventory
             this.openFileDialog1.Filter = "access(*.accdb) | *.accdb";
             this.openFileDialog1.ShowDialog();
             AbrirConexion(this.openFileDialog1.FileName);
-            if (conexion.Database == "openFileDialog1")
-            {
-                conexion.ChangeDatabase("");
-            }
-            else
+            lblDescripcionTitulo.Text = conexion.DataSource;
+            if(conexion.DataSource != "" && conexion.DataSource != "openFileDialog1")
             {
                 this.Hide();
             }
@@ -111,9 +111,6 @@ namespace GoodInventory
         /// </summary>
         /// <param name="sender">El formulario</param>
         /// <param name="e">El evento</param>
-        private void FormularioInicio_Load(object sender, EventArgs e)
-        {
-            AbrirConexion("C:\\Users\\maike\\OneDrive\\Documentos\\GitHub\\Proyecto-DAM\\GoodInventory\\bd.accdb");
-        }
+        private void FormularioInicio_Load(object sender, EventArgs e) { }
     }
 }
