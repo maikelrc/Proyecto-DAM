@@ -40,7 +40,7 @@ namespace GoodInventory
                 conexion = new OleDbConnection(strConnection);
                 conexion.Open();
             }
-            catch (OleDbException) { }   
+            catch (OleDbException) { }
         }
 
         /// <summary>
@@ -78,10 +78,9 @@ namespace GoodInventory
             this.openFileDialog1.InitialDirectory = "C:\\";
             this.openFileDialog1.Filter = "access(*.accdb) | *.accdb";
             this.openFileDialog1.ShowDialog();
-            AbrirConexion(this.openFileDialog1.FileName);
-            lblDescripcionTitulo.Text = conexion.DataSource;
-            if(conexion.DataSource != "" && conexion.DataSource != "openFileDialog1")
+            if (this.openFileDialog1.FileName != "openFileDialog1")
             {
+                AbrirConexion(this.openFileDialog1.FileName);
                 this.Hide();
             }
         }

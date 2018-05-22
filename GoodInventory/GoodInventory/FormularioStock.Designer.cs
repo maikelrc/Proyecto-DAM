@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioStock));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +62,12 @@
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lbTablas = new System.Windows.Forms.ListBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -323,9 +330,45 @@
             this.lbTablas.ItemHeight = 15;
             this.lbTablas.Location = new System.Drawing.Point(16, 89);
             this.lbTablas.Name = "lbTablas";
-            this.lbTablas.Size = new System.Drawing.Size(245, 510);
+            this.lbTablas.Size = new System.Drawing.Size(199, 510);
             this.lbTablas.TabIndex = 2;
             this.lbTablas.SelectedIndexChanged += new System.EventHandler(this.lbTablas_SelectedIndexChanged);
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(310, 46);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(853, 553);
+            this.listView1.TabIndex = 3;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "campo1";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "campo2";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "campo3";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "campo4";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "campo5";
             // 
             // FormularioStock
             // 
@@ -333,12 +376,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1175, 617);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.lbTablas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormularioStock";
-            this.Text = "Formulario_Stock";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Inventario";
             this.Load += new System.EventHandler(this.FormularioStock_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -381,5 +426,11 @@
         private System.Windows.Forms.ToolStripMenuItem acercadeToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbTablas;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

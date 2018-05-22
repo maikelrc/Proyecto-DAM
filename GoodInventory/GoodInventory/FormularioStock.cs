@@ -34,6 +34,7 @@ namespace GoodInventory
         /// Nombre de la base de datos.
         /// </summary>
         private string baseDeDatos;
+        private string tablaActual;
 
         /// <summary>
         /// Carga diferentes datos antes de ejecutar el formulario.
@@ -44,15 +45,15 @@ namespace GoodInventory
         {
             fi = new FormularioInicio();
             fi.ShowDialog();
-            ActualizarListaTablas();
-            //if (fi.conexion.DataSource == "")
-            //{
-            //    CerrarPrograma();
-            //}
-            //else
-            //{
-            //    baseDeDatos = fi.conexion.Database;
-            //}
+            if (fi.conexion == null)
+            {
+                this.Close();
+                CerrarPrograma();
+            }
+            else
+            {
+                ActualizarListaTablas();
+            }
         }
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace GoodInventory
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fi.NuevoInventario(fi.saveFileDialog1);
+            ActualizarListaTablas();
         }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace GoodInventory
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fi.AbrirInventario(fi.openFileDialog1);
+            ActualizarListaTablas();
         }
 
         /// <summary>
@@ -102,6 +105,17 @@ namespace GoodInventory
         //}
 
         /// <summary>
+        /// Cierra la conexión a la base de datos.
+        /// </summary>
+        private void CerrarConexíon()
+        {
+            if (lector != null)
+                lector.Close();
+            if (fi.conexion != null)
+                fi.conexion.Close();
+        }
+
+        /// <summary>
         /// Cierra la aplicación.
         /// </summary>
         private void CerrarPrograma()
@@ -112,6 +126,9 @@ namespace GoodInventory
             this.Close();
         }
 
+        /// <summary>
+        /// Actualiza la lista de tablas a las que existan en la base de datos.
+        /// </summary>
         private void ActualizarListaTablas()
         {
             lbTablas.Items.Clear();
@@ -125,7 +142,12 @@ namespace GoodInventory
 
         private void lbTablas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            EstablecerTablaActual();
+        }
 
+        private void EstablecerTablaActual()
+        {
+            tablaActual = lbTablas.SelectedItem.ToString();
         }
     }
 }
