@@ -29,12 +29,20 @@ namespace GoodInventory
 
         private OleDbCommand comando;
         private OleDbDataReader lector;
+        private DataSet ds = new DataSet();
+        private OleDbDataAdapter da;
+        private ListViewItem lista;
+
+
+        private bool orden;
 
         /// <summary>
         /// Nombre de la base de datos.
         /// </summary>
         private string baseDeDatos;
         private string tablaActual;
+        private string ordenPor;
+        private string cabecera = "";
 
         /// <summary>
         /// Carga diferentes datos antes de ejecutar el formulario.
@@ -143,11 +151,141 @@ namespace GoodInventory
         private void lbTablas_SelectedIndexChanged(object sender, EventArgs e)
         {
             EstablecerTablaActual();
+            cargarTabla();
         }
 
         private void EstablecerTablaActual()
         {
             tablaActual = lbTablas.SelectedItem.ToString();
+        }
+
+        /// <summary>
+        /// Establece un tamaño automático a los campos dentro de la cabecera.
+        /// </summary>
+        private void centrarPosicionCabeceraListView()
+        {
+            if (lvDatos.Columns.Count != 0)
+            {
+                int tamañoColumna = lvDatos.Width / lvDatos.Columns.Count;
+                for (int i = 0; i < lvDatos.Columns.Count; i++)
+                {
+                    lvDatos.Columns[i].Width = tamañoColumna;
+                    //if (i == 0)
+                    //    lvDatos.Columns[i].TextAlign = HorizontalAlignment.Right;
+                    //else
+                    try
+                    {
+                        lvDatos.Columns[i].TextAlign = HorizontalAlignment.Center;
+                    }
+                    catch (InvalidOperationException) { }
+                    //}
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Carga la tabla en el ListView.
+        /// </summary>
+        private void cargarTabla()
+        {
+            lvDatos.Clear();
+            ordenPor = "";
+            ds.Reset();
+            da = new OleDbDataAdapter("select * from " + tablaActual, fi.conexion);
+            da.Fill(ds, tablaActual);
+            //Foreach que carga la cabecera
+            foreach (DataTable t in ds.Tables)
+            {
+                foreach (DataColumn c in t.Columns)
+                {
+                    lvDatos.Columns.Add(c.ColumnName);
+                }
+            }
+            centrarPosicionCabeceraListView();
+            //Foreach que carga los datos
+            foreach (DataRow r in ds.Tables[tablaActual].Rows)
+            {
+                for (int i = 0; i < lvDatos.Columns.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        lista = new ListViewItem(r.ItemArray[i].ToString());
+                    }
+                    else
+                    {
+                        lista.SubItems.Add(r.ItemArray[i].ToString());
+                    }
+                }
+                lvDatos.Items.Add(lista);
+            }
+        }
+
+        /// <summary>
+        /// Carga la tabla en el ListView ordenada por la cabecera.
+        /// </summary>
+        private void cargarTablaOrdenadaPorCabeceraSeleccionada(string cabecera)
+        {
+            lvDatos.Clear();
+            ds.Reset();
+            //if que establecen el tipo de orden en el contrario al actual.
+            if (this.cabecera == cabecera)
+                orden = false;
+            else
+                orden = true;
+            if (orden)
+            {
+                this.cabecera = cabecera;
+                ordenPor = "asc";
+            }
+            else
+            {
+                ordenPor = "desc";
+                this.cabecera = "";
+            }
+            da = new OleDbDataAdapter("select * from " + tablaActual + " order by " + cabecera + " " + ordenPor, fi.conexion);
+            da.Fill(ds, tablaActual);
+            //Foreach que carga la cabecera
+            foreach (DataTable t in ds.Tables)
+            {
+                foreach (DataColumn c in t.Columns)
+                {
+                    lvDatos.Columns.Add(c.ColumnName);
+                }
+            }
+            centrarPosicionCabeceraListView();
+            //Foreach que carga los datos
+            foreach (DataRow r in ds.Tables[tablaActual].Rows)
+            {
+                for (int i = 0; i < lvDatos.Columns.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        lista = new ListViewItem(r.ItemArray[i].ToString());
+                    }
+                    else
+                    {
+                        lista.SubItems.Add(r.ItemArray[i].ToString());
+                    }
+                }
+                lvDatos.Items.Add(lista);
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el tamaño de la cabecera cada vez que el listView cambie de tamaño.
+        /// </summary>
+        /// <param name="sender">El sender</param>
+        /// <param name="e">El evento</param>
+        private void lvDatos_SizeChanged(object sender, EventArgs e)
+        {
+            centrarPosicionCabeceraListView();
+        }
+
+        private void lvDatos_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            string nombre = lvDatos.Columns[e.Column].Text;
+            cargarTablaOrdenadaPorCabeceraSeleccionada(nombre);
         }
     }
 }

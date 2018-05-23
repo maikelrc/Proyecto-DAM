@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioStock));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            ""}, -1, System.Drawing.SystemColors.InfoText, System.Drawing.Color.Empty, null);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,12 +63,7 @@
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lbTablas = new System.Windows.Forms.ListBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvDatos = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -334,41 +330,24 @@
             this.lbTablas.TabIndex = 2;
             this.lbTablas.SelectedIndexChanged += new System.EventHandler(this.lbTablas_SelectedIndexChanged);
             // 
-            // listView1
+            // lvDatos
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.lvDatos.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.lvDatos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvDatos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvDatos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(310, 46);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(853, 553);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "campo1";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "campo2";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "campo3";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "campo4";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "campo5";
+            this.lvDatos.LabelEdit = true;
+            this.lvDatos.Location = new System.Drawing.Point(310, 46);
+            this.lvDatos.Name = "lvDatos";
+            this.lvDatos.Size = new System.Drawing.Size(853, 553);
+            this.lvDatos.TabIndex = 3;
+            this.lvDatos.UseCompatibleStateImageBehavior = false;
+            this.lvDatos.View = System.Windows.Forms.View.Details;
+            this.lvDatos.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvDatos_ColumnClick);
+            this.lvDatos.SizeChanged += new System.EventHandler(this.lvDatos_SizeChanged);
             // 
             // FormularioStock
             // 
@@ -376,7 +355,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1175, 617);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvDatos);
             this.Controls.Add(this.lbTablas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -426,11 +405,6 @@
         private System.Windows.Forms.ToolStripMenuItem acercadeToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbTablas;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ListView lvDatos;
     }
 }
