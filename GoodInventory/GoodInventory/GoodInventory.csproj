@@ -45,11 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormularioEditarCampos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioEditarCampos.Designer.cs">
+      <DependentUpon>FormularioEditarCampos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioInicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormularioInicio.Designer.cs">
       <DependentUpon>FormularioInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioNuevaTabla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioNuevaTabla.Designer.cs">
+      <DependentUpon>FormularioNuevaTabla.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioStock.cs">
       <SubType>Form</SubType>
@@ -59,8 +71,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormularioEditarCampos.resx">
+      <DependentUpon>FormularioEditarCampos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioInicio.resx">
       <DependentUpon>FormularioInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioNuevaTabla.resx">
+      <DependentUpon>FormularioNuevaTabla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioStock.resx">
       <DependentUpon>FormularioStock.cs</DependentUpon>
@@ -86,6 +104,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADOX">
+      <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

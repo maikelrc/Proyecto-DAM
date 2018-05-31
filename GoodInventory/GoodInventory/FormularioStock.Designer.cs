@@ -64,6 +64,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbTablas = new System.Windows.Forms.ListBox();
             this.lvDatos = new System.Windows.Forms.ListView();
+            this.btnDelTabla = new System.Windows.Forms.Button();
+            this.btnAddTabla = new System.Windows.Forms.Button();
+            this.btnEditarCampos = new System.Windows.Forms.Button();
+            this.btnEditarDatos = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -349,12 +353,69 @@
             this.lvDatos.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvDatos_ColumnClick);
             this.lvDatos.SizeChanged += new System.EventHandler(this.lvDatos_SizeChanged);
             // 
+            // btnDelTabla
+            // 
+            this.btnDelTabla.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnDelTabla.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelTabla.BackgroundImage")));
+            this.btnDelTabla.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDelTabla.FlatAppearance.BorderSize = 0;
+            this.btnDelTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelTabla.Location = new System.Drawing.Point(162, 49);
+            this.btnDelTabla.Name = "btnDelTabla";
+            this.btnDelTabla.Size = new System.Drawing.Size(20, 20);
+            this.btnDelTabla.TabIndex = 4;
+            this.btnDelTabla.UseVisualStyleBackColor = false;
+            this.btnDelTabla.Click += new System.EventHandler(this.btnDelTabla_Click);
+            // 
+            // btnAddTabla
+            // 
+            this.btnAddTabla.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnAddTabla.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddTabla.BackgroundImage")));
+            this.btnAddTabla.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddTabla.FlatAppearance.BorderSize = 0;
+            this.btnAddTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTabla.Location = new System.Drawing.Point(130, 49);
+            this.btnAddTabla.Name = "btnAddTabla";
+            this.btnAddTabla.Size = new System.Drawing.Size(20, 20);
+            this.btnAddTabla.TabIndex = 5;
+            this.btnAddTabla.UseVisualStyleBackColor = false;
+            this.btnAddTabla.Click += new System.EventHandler(this.btnAddTabla_Click);
+            // 
+            // btnEditarCampos
+            // 
+            this.btnEditarCampos.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEditarCampos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarCampos.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarCampos.Location = new System.Drawing.Point(229, 46);
+            this.btnEditarCampos.Name = "btnEditarCampos";
+            this.btnEditarCampos.Size = new System.Drawing.Size(75, 53);
+            this.btnEditarCampos.TabIndex = 6;
+            this.btnEditarCampos.Text = "EDITAR CAMPOS";
+            this.btnEditarCampos.UseVisualStyleBackColor = false;
+            this.btnEditarCampos.Click += new System.EventHandler(this.btnEditarCampos_Click);
+            // 
+            // btnEditarDatos
+            // 
+            this.btnEditarDatos.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEditarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarDatos.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarDatos.Location = new System.Drawing.Point(229, 105);
+            this.btnEditarDatos.Name = "btnEditarDatos";
+            this.btnEditarDatos.Size = new System.Drawing.Size(75, 53);
+            this.btnEditarDatos.TabIndex = 7;
+            this.btnEditarDatos.Text = "EDITAR DATOS";
+            this.btnEditarDatos.UseVisualStyleBackColor = false;
+            // 
             // FormularioStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1175, 617);
+            this.Controls.Add(this.btnEditarDatos);
+            this.Controls.Add(this.btnEditarCampos);
+            this.Controls.Add(this.btnAddTabla);
+            this.Controls.Add(this.btnDelTabla);
             this.Controls.Add(this.lvDatos);
             this.Controls.Add(this.lbTablas);
             this.Controls.Add(this.label1);
@@ -406,5 +467,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbTablas;
         private System.Windows.Forms.ListView lvDatos;
+        private System.Windows.Forms.Button btnDelTabla;
+        private System.Windows.Forms.Button btnAddTabla;
+        private System.Windows.Forms.Button btnEditarCampos;
+        private System.Windows.Forms.Button btnEditarDatos;
     }
 }

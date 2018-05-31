@@ -5,10 +5,12 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.IO;
+using ADOX;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace GoodInventory
 {
@@ -29,18 +31,73 @@ namespace GoodInventory
         public OleDbConnection conexion;
 
         /// <summary>
-        /// Abre una nueva conexión a la base de datos indicada por parámetro.
+        /// Nombre de la base de datos.
         /// </summary>
-        /// <param name="bd">Nombre de la base de datos</param>
+        public string baseDeDatos;
+
+        /// <summary>
+        /// Proveedor de la base de datos.
+        /// </summary>
+        private string proveedor = "Microsoft.ACE.OLEDB.12.0";
+
+        /// <summary>
+        /// Booleana que marca si se minimiza o no el formulario.
+        /// </summary>
+        private bool minimizarForm = true;
+
+        /// <summary>
+        /// Abre una nueva conexión a la base de datos de la ruta pasada por parámetro (nombre de la base de datos incluído en la ruta).
+        /// </summary>
+        /// <param name="bd">La ruta</param>
         public void AbrirConexion(string bd)
         {
             try
             {
-                string strConnection = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + bd + ";User ID=admin";
+                string strConnection = "Provider=" + proveedor + ";Data Source=" + bd + ";User ID=admin";
                 conexion = new OleDbConnection(strConnection);
                 conexion.Open();
+                minimizarForm = true;
             }
-            catch (OleDbException) { }
+            catch (OleDbException)
+            {
+                string mensaje = "No se reconoce el formato de la base de datos.";
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                minimizarForm = false;
+                conexion = null;
+            }
+            catch (InvalidOperationException)
+            {
+                string mensaje = "El proveedor de base de datos'" + proveedor + "' no está registrado en el equipo local.";
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                minimizarForm = false;
+                conexion = null;
+            }
+        }
+
+        /// <summary>
+        /// Crea una nueva base de datos en la ruta pasada por parámetro (nombre de la base de datos incluído en la ruta).
+        /// </summary>
+        /// <param name="bd">La ruta</param>
+        public void CrearBaseDeDatos(string bd)
+        {
+            try
+            {
+                ADOX.Catalog cat = new Catalog();
+                cat.Create("Provider=" + proveedor + ";Data Source=" + bd + ";");
+                minimizarForm = true;
+            }
+            catch (COMException ex)
+            {
+                string mensaje = "El proveedor de base de datos'" + proveedor + "' no está registrado en el equipo local.";
+                //BD existente -> -2147217897
+                if (ex.ErrorCode.ToString() == "-2147217897")
+                {
+                    mensaje = "La base de datos que intenta crear ya existe.";
+                }
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                minimizarForm = false;
+                conexion = null;
+            }
         }
 
         /// <summary>
@@ -53,19 +110,22 @@ namespace GoodInventory
             this.saveFileDialog1.InitialDirectory = "C:\\";
             this.saveFileDialog1.Filter = "access(*.accdb) | *.accdb";
             this.saveFileDialog1.ValidateNames = true;
+            this.saveFileDialog1.FileName = "";
             this.saveFileDialog1.ShowDialog();
-            StreamWriter s = null;
             try
             {
-                s = new StreamWriter(this.saveFileDialog1.FileName);
-                AbrirConexion(this.saveFileDialog1.FileName);
-                this.Hide();
+                if (this.saveFileDialog1.FileName != "")
+                {
+                    baseDeDatos = (this.saveFileDialog1.FileName);
+                    CrearBaseDeDatos(baseDeDatos);
+                    if (minimizarForm)
+                    {
+                        AbrirConexion(baseDeDatos);
+                        this.Hide();
+                    }
+                }
             }
             catch (ArgumentException) { }
-            finally
-            {
-                if (s != null) s.Close();
-            }
         }
 
         /// <summary>
@@ -77,11 +137,13 @@ namespace GoodInventory
             this.openFileDialog1.Title = "Selección de inventario (base de datos .accdb) para mostrar su contenido.";
             this.openFileDialog1.InitialDirectory = "C:\\";
             this.openFileDialog1.Filter = "access(*.accdb) | *.accdb";
+            this.openFileDialog1.FileName = "";
             this.openFileDialog1.ShowDialog();
-            if (this.openFileDialog1.FileName != "openFileDialog1")
+            if (this.openFileDialog1.FileName != "")
             {
-                AbrirConexion(this.openFileDialog1.FileName);
-                this.Hide();
+                baseDeDatos = this.openFileDialog1.FileName;
+                AbrirConexion(baseDeDatos);
+                if (minimizarForm) this.Hide();
             }
         }
 
