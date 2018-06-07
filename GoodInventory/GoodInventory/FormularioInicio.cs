@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace GoodInventory
 {
@@ -41,6 +42,11 @@ namespace GoodInventory
         private string proveedor = "Microsoft.ACE.OLEDB.12.0";
 
         /// <summary>
+        /// Cadena de creación de la conexión a la base de datos.
+        /// </summary>
+        public string strConnection;
+
+        /// <summary>
         /// Booleana que marca si se minimiza o no el formulario.
         /// </summary>
         private bool minimizarForm = true;
@@ -53,7 +59,7 @@ namespace GoodInventory
         {
             try
             {
-                string strConnection = "Provider=" + proveedor + ";Data Source=" + bd + ";User ID=admin";
+                strConnection = "Provider=" + proveedor + ";Data Source=" + bd + ";User ID=admin";
                 conexion = new OleDbConnection(strConnection);
                 conexion.Open();
                 minimizarForm = true;
@@ -67,10 +73,12 @@ namespace GoodInventory
             }
             catch (InvalidOperationException)
             {
-                string mensaje = "El proveedor de base de datos'" + proveedor + "' no está registrado en el equipo local.";
+                string mensaje = "Este equipo no tiene instalado el plugin de Access necesario para ejecutar esta aplicación.";
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 minimizarForm = false;
                 conexion = null;
+                lblEnlace.Visible = true;
+                linkLabel1.Visible = true;
             }
         }
 
@@ -167,11 +175,10 @@ namespace GoodInventory
             AbrirInventario(this.openFileDialog1);
         }
 
-        /// <summary>
-        /// Carga diferentes datos antes de ejecutar el formulario.
-        /// </summary>
-        /// <param name="sender">El formulario</param>
-        /// <param name="e">El evento</param>
-        private void FormularioInicio_Load(object sender, EventArgs e) { }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+            Process.Start(linkLabel1.Text);
+        }
     }
 }

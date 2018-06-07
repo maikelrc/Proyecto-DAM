@@ -42,7 +42,8 @@
             this.chNombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.lblError = new System.Windows.Forms.Label();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.btnRenombrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNombreCampo
@@ -68,7 +69,8 @@
             this.tbNombreCampo.Location = new System.Drawing.Point(76, 62);
             this.tbNombreCampo.Name = "tbNombreCampo";
             this.tbNombreCampo.Size = new System.Drawing.Size(118, 23);
-            this.tbNombreCampo.TabIndex = 2;
+            this.tbNombreCampo.TabIndex = 0;
+            this.tbNombreCampo.TabStop = false;
             // 
             // cbTipos
             // 
@@ -77,21 +79,23 @@
             this.cbTipos.FormattingEnabled = true;
             this.cbTipos.Items.AddRange(new object[] {
             "Cadena",
-            "Número"});
+            "Número",
+            "Número (PK)"});
             this.cbTipos.Location = new System.Drawing.Point(313, 62);
             this.cbTipos.Name = "cbTipos";
             this.cbTipos.Size = new System.Drawing.Size(121, 23);
-            this.cbTipos.TabIndex = 3;
+            this.cbTipos.TabIndex = 1;
+            this.cbTipos.TabStop = false;
             // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.White;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(53, 126);
+            this.btnAgregar.Location = new System.Drawing.Point(12, 126);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(95, 39);
-            this.btnAgregar.TabIndex = 4;
+            this.btnAgregar.Size = new System.Drawing.Size(100, 39);
+            this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = "AGREGAR";
             this.btnAgregar.UseVisualStyleBackColor = false;
             // 
@@ -100,10 +104,10 @@
             this.btnEliminar.BackColor = System.Drawing.Color.White;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(209, 126);
+            this.btnEliminar.Location = new System.Drawing.Point(270, 126);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(95, 39);
-            this.btnEliminar.TabIndex = 5;
+            this.btnEliminar.Size = new System.Drawing.Size(100, 39);
+            this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
             // 
@@ -112,10 +116,10 @@
             this.btnLimpiar.BackColor = System.Drawing.Color.White;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(367, 126);
+            this.btnLimpiar.Location = new System.Drawing.Point(402, 126);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(95, 39);
-            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.Size = new System.Drawing.Size(100, 39);
+            this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             // 
@@ -130,6 +134,7 @@
             this.lvCampos.Name = "lvCampos";
             this.lvCampos.Size = new System.Drawing.Size(490, 275);
             this.lvCampos.TabIndex = 7;
+            this.lvCampos.TabStop = false;
             this.lvCampos.UseCompatibleStateImageBehavior = false;
             this.lvCampos.View = System.Windows.Forms.View.Details;
             // 
@@ -157,13 +162,25 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // lblError
+            // lblInfo
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(52, 97);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 17);
-            this.lblError.TabIndex = 32;
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(52, 97);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(0, 17);
+            this.lblInfo.TabIndex = 32;
+            // 
+            // btnRenombrar
+            // 
+            this.btnRenombrar.BackColor = System.Drawing.Color.White;
+            this.btnRenombrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRenombrar.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRenombrar.Location = new System.Drawing.Point(138, 126);
+            this.btnRenombrar.Name = "btnRenombrar";
+            this.btnRenombrar.Size = new System.Drawing.Size(100, 39);
+            this.btnRenombrar.TabIndex = 3;
+            this.btnRenombrar.Text = "RENOMBRAR";
+            this.btnRenombrar.UseVisualStyleBackColor = false;
             // 
             // FormularioEditarCampos
             // 
@@ -173,7 +190,8 @@
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.CancelButton = this.btnCerrar;
             this.ClientSize = new System.Drawing.Size(514, 467);
-            this.Controls.Add(this.lblError);
+            this.Controls.Add(this.btnRenombrar);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.lvCampos);
             this.Controls.Add(this.btnLimpiar);
@@ -210,6 +228,7 @@
         private System.Windows.Forms.ColumnHeader chNombre;
         private System.Windows.Forms.ColumnHeader chTipo;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Label lblError;
+        public System.Windows.Forms.Label lblInfo;
+        public System.Windows.Forms.Button btnRenombrar;
     }
 }

@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace GoodInventory
 {
-    public partial class FormularioEditarCampos : Form
+    public partial class FormularioEditarDato : Form
     {
-        //public bool orden;
-        //public string ordenPor;
-        //public string cabecera = "";
-
-        public FormularioEditarCampos()
+        public FormularioEditarDato()
         {
             InitializeComponent();
-        }
-
-        private void FormularioEditarCampos_Load(object sender, EventArgs e)
-        {
-            FormularioStock fs = new FormularioStock();
-            fs.centrarPosicionCabeceraListView(lvCampos, true);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

@@ -51,6 +51,12 @@
     <Compile Include="FormularioEditarCampos.Designer.cs">
       <DependentUpon>FormularioEditarCampos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioEditarDato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioEditarDato.Designer.cs">
+      <DependentUpon>FormularioEditarDato.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormularioEditarCampos.resx">
       <DependentUpon>FormularioEditarCampos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioEditarDato.resx">
+      <DependentUpon>FormularioEditarDato.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioInicio.resx">
       <DependentUpon>FormularioInicio.cs</DependentUpon>
@@ -115,6 +124,18 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Access.Dao">
+      <Guid>{4AC9E1DA-5BAD-4AC7-86E3-24F4CDCECA28}</Guid>
+      <VersionMajor>12</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

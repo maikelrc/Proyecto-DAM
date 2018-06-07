@@ -38,6 +38,8 @@
             this.lblDescripcionTitulo = new System.Windows.Forms.Label();
             this.lblOpcion = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblEnlace = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnNuevoInventario
@@ -106,12 +108,37 @@
             this.lblOpcion.TabIndex = 4;
             this.lblOpcion.Text = "SELECCIONE UNA OPCIÓN:";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(47, 300);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(421, 17);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://www.microsoft.com/es-es/download/confirmation.aspx?id=50040";
+            this.linkLabel1.Visible = false;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // lblEnlace
+            // 
+            this.lblEnlace.AutoSize = true;
+            this.lblEnlace.Location = new System.Drawing.Point(47, 278);
+            this.lblEnlace.Name = "lblEnlace";
+            this.lblEnlace.Size = new System.Drawing.Size(350, 17);
+            this.lblEnlace.TabIndex = 6;
+            this.lblEnlace.Text = "Enlace del plugin Access necesario para la aplicación:";
+            this.lblEnlace.Visible = false;
+            // 
             // FormularioInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(526, 335);
+            this.Controls.Add(this.lblEnlace);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblOpcion);
             this.Controls.Add(this.lblDescripcionTitulo);
             this.Controls.Add(this.lblTitulo);
@@ -123,7 +150,6 @@
             this.Name = "FormularioInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
-            this.Load += new System.EventHandler(this.FormularioInicio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,6 +165,8 @@
         private System.Windows.Forms.Label lblDescripcionTitulo;
         private System.Windows.Forms.Label lblOpcion;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label lblEnlace;
     }
 }
 
