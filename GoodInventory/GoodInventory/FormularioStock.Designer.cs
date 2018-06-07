@@ -38,6 +38,7 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lbTablas = new System.Windows.Forms.ListBox();
             this.lvDatos = new System.Windows.Forms.ListView();
@@ -49,7 +50,6 @@
             this.btnDelFila = new System.Windows.Forms.Button();
             this.btnDelTodo = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             this.acercadeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1175, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
@@ -109,6 +110,13 @@
             this.salirToolStripMenuItem.Text = "&Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // acercadeToolStripMenuItem
+            // 
+            this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
+            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(101, 25);
+            this.acercadeToolStripMenuItem.Text = "Acerca &de...";
+            this.acercadeToolStripMenuItem.Click += new System.EventHandler(this.acercadeToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -127,8 +135,9 @@
             this.lbTablas.FormattingEnabled = true;
             this.lbTablas.ItemHeight = 15;
             this.lbTablas.Location = new System.Drawing.Point(16, 89);
+            this.lbTablas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbTablas.Name = "lbTablas";
-            this.lbTablas.Size = new System.Drawing.Size(199, 510);
+            this.lbTablas.Size = new System.Drawing.Size(199, 495);
             this.lbTablas.TabIndex = 2;
             this.lbTablas.SelectedIndexChanged += new System.EventHandler(this.lbTablas_SelectedIndexChanged);
             // 
@@ -143,7 +152,8 @@
             this.lvDatos.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.lvDatos.LabelEdit = true;
-            this.lvDatos.Location = new System.Drawing.Point(310, 46);
+            this.lvDatos.Location = new System.Drawing.Point(309, 46);
+            this.lvDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvDatos.Name = "lvDatos";
             this.lvDatos.Size = new System.Drawing.Size(853, 553);
             this.lvDatos.TabIndex = 3;
@@ -160,7 +170,8 @@
             this.btnDelTabla.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnDelTabla.FlatAppearance.BorderSize = 0;
             this.btnDelTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelTabla.Location = new System.Drawing.Point(162, 49);
+            this.btnDelTabla.Location = new System.Drawing.Point(163, 49);
+            this.btnDelTabla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelTabla.Name = "btnDelTabla";
             this.btnDelTabla.Size = new System.Drawing.Size(20, 20);
             this.btnDelTabla.TabIndex = 4;
@@ -176,7 +187,8 @@
             this.btnAddTabla.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAddTabla.FlatAppearance.BorderSize = 0;
             this.btnAddTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddTabla.Location = new System.Drawing.Point(130, 49);
+            this.btnAddTabla.Location = new System.Drawing.Point(131, 49);
+            this.btnAddTabla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddTabla.Name = "btnAddTabla";
             this.btnAddTabla.Size = new System.Drawing.Size(20, 20);
             this.btnAddTabla.TabIndex = 5;
@@ -188,12 +200,15 @@
             // 
             this.btnEditarCampos.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEditarCampos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditarCampos.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarCampos.Location = new System.Drawing.Point(229, 46);
+            this.btnEditarCampos.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarCampos.Location = new System.Drawing.Point(220, 46);
+            this.btnEditarCampos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEditarCampos.Name = "btnEditarCampos";
-            this.btnEditarCampos.Size = new System.Drawing.Size(75, 53);
+            this.btnEditarCampos.Size = new System.Drawing.Size(84, 53);
             this.btnEditarCampos.TabIndex = 6;
             this.btnEditarCampos.Text = "EDITAR CAMPOS";
+            this.toolTip1.SetToolTip(this.btnEditarCampos, "Abre un nuevo formulario en el que se pueden editar los campos de la tabla actual" +
+        ".");
             this.btnEditarCampos.UseVisualStyleBackColor = false;
             this.btnEditarCampos.Click += new System.EventHandler(this.btnEditarCampos_Click);
             // 
@@ -201,12 +216,14 @@
             // 
             this.btnRenombrarTabla.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnRenombrarTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRenombrarTabla.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRenombrarTabla.Location = new System.Drawing.Point(229, 105);
+            this.btnRenombrarTabla.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRenombrarTabla.Location = new System.Drawing.Point(220, 105);
+            this.btnRenombrarTabla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRenombrarTabla.Name = "btnRenombrarTabla";
-            this.btnRenombrarTabla.Size = new System.Drawing.Size(75, 70);
+            this.btnRenombrarTabla.Size = new System.Drawing.Size(84, 70);
             this.btnRenombrarTabla.TabIndex = 7;
             this.btnRenombrarTabla.Text = "CAMBIAR NOMBRE TABLA";
+            this.toolTip1.SetToolTip(this.btnRenombrarTabla, "Renombra la tabla.");
             this.btnRenombrarTabla.UseVisualStyleBackColor = false;
             this.btnRenombrarTabla.Click += new System.EventHandler(this.btnRenombrarTabla_Click);
             // 
@@ -214,12 +231,14 @@
             // 
             this.btnAddFila.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAddFila.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddFila.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddFila.Location = new System.Drawing.Point(229, 181);
+            this.btnAddFila.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddFila.Location = new System.Drawing.Point(220, 181);
+            this.btnAddFila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddFila.Name = "btnAddFila";
-            this.btnAddFila.Size = new System.Drawing.Size(75, 53);
+            this.btnAddFila.Size = new System.Drawing.Size(84, 53);
             this.btnAddFila.TabIndex = 8;
             this.btnAddFila.Text = "AÑADIR FILA";
+            this.toolTip1.SetToolTip(this.btnAddFila, "Añade una nueva fila a la tabla para la inserción de datos.");
             this.btnAddFila.UseVisualStyleBackColor = false;
             this.btnAddFila.Click += new System.EventHandler(this.btnAddFila_Click);
             // 
@@ -227,12 +246,15 @@
             // 
             this.btnDelFila.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelFila.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelFila.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelFila.Location = new System.Drawing.Point(229, 240);
+            this.btnDelFila.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelFila.Location = new System.Drawing.Point(220, 240);
+            this.btnDelFila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelFila.Name = "btnDelFila";
-            this.btnDelFila.Size = new System.Drawing.Size(75, 70);
+            this.btnDelFila.Size = new System.Drawing.Size(84, 70);
             this.btnDelFila.TabIndex = 9;
             this.btnDelFila.Text = "BORRAR FILA";
+            this.toolTip1.SetToolTip(this.btnDelFila, "Cuándo el texto de este botón tiene un número borra la fila cuyo identificador se" +
+        "a igual a este número.");
             this.btnDelFila.UseVisualStyleBackColor = false;
             this.btnDelFila.Click += new System.EventHandler(this.btnDelFila_Click);
             // 
@@ -240,21 +262,16 @@
             // 
             this.btnDelTodo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelTodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelTodo.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelTodo.Location = new System.Drawing.Point(229, 316);
+            this.btnDelTodo.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelTodo.Location = new System.Drawing.Point(220, 316);
+            this.btnDelTodo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelTodo.Name = "btnDelTodo";
-            this.btnDelTodo.Size = new System.Drawing.Size(75, 53);
+            this.btnDelTodo.Size = new System.Drawing.Size(84, 53);
             this.btnDelTodo.TabIndex = 10;
             this.btnDelTodo.Text = "BORRAR TODO";
+            this.toolTip1.SetToolTip(this.btnDelTodo, "Borra todos los datos de la tabla con previa confirmación.");
             this.btnDelTodo.UseVisualStyleBackColor = false;
             this.btnDelTodo.Click += new System.EventHandler(this.btnDelTodo_Click);
-            // 
-            // acercadeToolStripMenuItem
-            // 
-            this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(101, 25);
-            this.acercadeToolStripMenuItem.Text = "Acerca &de...";
-            this.acercadeToolStripMenuItem.Click += new System.EventHandler(this.acercadeToolStripMenuItem_Click);
             // 
             // FormularioStock
             // 
@@ -274,6 +291,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormularioStock";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";

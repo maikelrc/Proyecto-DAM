@@ -96,11 +96,15 @@ namespace GoodInventory
             }
             catch (COMException ex)
             {
-                string mensaje = "El proveedor de base de datos'" + proveedor + "' no está registrado en el equipo local.";
-                //BD existente -> -2147217897
+                string mensaje = "Este equipo no tiene instalado el plugin de Access necesario para ejecutar esta aplicación.";
                 if (ex.ErrorCode.ToString() == "-2147217897")
                 {
                     mensaje = "La base de datos que intenta crear ya existe.";
+                }
+                else
+                {
+                    lblEnlace.Visible = true;
+                    linkLabel1.Visible = true;
                 }
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 minimizarForm = false;
@@ -114,9 +118,9 @@ namespace GoodInventory
         /// <param name="saveFileDialog1"></param>
         public void NuevoInventario(SaveFileDialog saveFileDialog1)
         {
-            this.saveFileDialog1.Title = "Selección de directorio para almacenar inventario (base de datos .accdb)";
+            this.saveFileDialog1.Title = "Selección de directorio para almacenar inventario (base de datos Access)";
             this.saveFileDialog1.InitialDirectory = "C:\\";
-            this.saveFileDialog1.Filter = "access(*.accdb) | *.accdb";
+            this.saveFileDialog1.Filter = "access (*.accdb)|*.accdb|access (*.mdb) | *.mdb";
             this.saveFileDialog1.ValidateNames = true;
             this.saveFileDialog1.FileName = "";
             this.saveFileDialog1.ShowDialog();
@@ -142,9 +146,9 @@ namespace GoodInventory
         /// <param name="openFileDialog1"></param>
         public void AbrirInventario(OpenFileDialog openFileDialog1)
         {
-            this.openFileDialog1.Title = "Selección de inventario (base de datos .accdb) para mostrar su contenido.";
+            this.openFileDialog1.Title = "Selección de inventario (base de datos Access) para mostrar su contenido.";
             this.openFileDialog1.InitialDirectory = "C:\\";
-            this.openFileDialog1.Filter = "access(*.accdb) | *.accdb";
+            this.openFileDialog1.Filter = "access (*.accdb)|*.accdb|access (*.mdb) | *.mdb";
             this.openFileDialog1.FileName = "";
             this.openFileDialog1.ShowDialog();
             if (this.openFileDialog1.FileName != "")

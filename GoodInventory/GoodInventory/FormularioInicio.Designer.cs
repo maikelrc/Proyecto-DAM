@@ -49,9 +49,10 @@
             this.btnNuevoInventario.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnNuevoInventario.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevoInventario.ForeColor = System.Drawing.Color.Black;
-            this.btnNuevoInventario.Location = new System.Drawing.Point(50, 165);
+            this.btnNuevoInventario.Location = new System.Drawing.Point(38, 134);
+            this.btnNuevoInventario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNuevoInventario.Name = "btnNuevoInventario";
-            this.btnNuevoInventario.Size = new System.Drawing.Size(148, 76);
+            this.btnNuevoInventario.Size = new System.Drawing.Size(111, 62);
             this.btnNuevoInventario.TabIndex = 0;
             this.btnNuevoInventario.Text = "&NUEVO INVENTARIO";
             this.toolTip1.SetToolTip(this.btnNuevoInventario, "Crea un inventario nuevo (Base de datos) en la ruta deseada.");
@@ -65,9 +66,10 @@
             this.btnAbrirInventario.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAbrirInventario.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbrirInventario.ForeColor = System.Drawing.Color.Black;
-            this.btnAbrirInventario.Location = new System.Drawing.Point(314, 165);
+            this.btnAbrirInventario.Location = new System.Drawing.Point(236, 134);
+            this.btnAbrirInventario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAbrirInventario.Name = "btnAbrirInventario";
-            this.btnAbrirInventario.Size = new System.Drawing.Size(148, 76);
+            this.btnAbrirInventario.Size = new System.Drawing.Size(111, 62);
             this.btnAbrirInventario.TabIndex = 1;
             this.btnAbrirInventario.Text = "&ABRIR INVENTARIO";
             this.toolTip1.SetToolTip(this.btnAbrirInventario, "Abre un inventario existente (Base de datos).");
@@ -82,9 +84,10 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(161, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(121, 7);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(197, 29);
+            this.lblTitulo.Size = new System.Drawing.Size(157, 23);
             this.lblTitulo.TabIndex = 2;
             this.lblTitulo.Text = "GOOD INVENTORY";
             // 
@@ -92,9 +95,10 @@
             // 
             this.lblDescripcionTitulo.AutoSize = true;
             this.lblDescripcionTitulo.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcionTitulo.Location = new System.Drawing.Point(176, 52);
+            this.lblDescripcionTitulo.Location = new System.Drawing.Point(132, 42);
+            this.lblDescripcionTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDescripcionTitulo.Name = "lblDescripcionTitulo";
-            this.lblDescripcionTitulo.Size = new System.Drawing.Size(168, 17);
+            this.lblDescripcionTitulo.Size = new System.Drawing.Size(128, 13);
             this.lblDescripcionTitulo.TabIndex = 3;
             this.lblDescripcionTitulo.Text = "SU GESTOR DE INVENTARIO";
             // 
@@ -102,9 +106,10 @@
             // 
             this.lblOpcion.AutoSize = true;
             this.lblOpcion.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpcion.Location = new System.Drawing.Point(162, 119);
+            this.lblOpcion.Location = new System.Drawing.Point(122, 97);
+            this.lblOpcion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOpcion.Name = "lblOpcion";
-            this.lblOpcion.Size = new System.Drawing.Size(198, 21);
+            this.lblOpcion.Size = new System.Drawing.Size(159, 17);
             this.lblOpcion.TabIndex = 4;
             this.lblOpcion.Text = "SELECCIONE UNA OPCIÓN:";
             // 
@@ -112,9 +117,10 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(47, 300);
+            this.linkLabel1.Location = new System.Drawing.Point(35, 244);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(421, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(354, 13);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://www.microsoft.com/es-es/download/confirmation.aspx?id=50040";
@@ -124,19 +130,20 @@
             // lblEnlace
             // 
             this.lblEnlace.AutoSize = true;
-            this.lblEnlace.Location = new System.Drawing.Point(47, 278);
+            this.lblEnlace.Location = new System.Drawing.Point(35, 226);
+            this.lblEnlace.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEnlace.Name = "lblEnlace";
-            this.lblEnlace.Size = new System.Drawing.Size(350, 17);
+            this.lblEnlace.Size = new System.Drawing.Size(264, 13);
             this.lblEnlace.TabIndex = 6;
             this.lblEnlace.Text = "Enlace del plugin Access necesario para la aplicación:";
             this.lblEnlace.Visible = false;
             // 
             // FormularioInicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.ClientSize = new System.Drawing.Size(526, 335);
+            this.ClientSize = new System.Drawing.Size(394, 272);
             this.Controls.Add(this.lblEnlace);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblOpcion);
@@ -146,6 +153,7 @@
             this.Controls.Add(this.btnNuevoInventario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FormularioInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

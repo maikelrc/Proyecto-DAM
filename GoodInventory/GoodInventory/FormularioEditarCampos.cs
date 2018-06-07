@@ -12,10 +12,6 @@ namespace GoodInventory
 {
     public partial class FormularioEditarCampos : Form
     {
-        //public bool orden;
-        //public string ordenPor;
-        //public string cabecera = "";
-
         public FormularioEditarCampos()
         {
             InitializeComponent();

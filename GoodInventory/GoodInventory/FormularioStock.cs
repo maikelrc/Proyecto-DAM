@@ -208,6 +208,8 @@ namespace GoodInventory
                 {
                     int tamañoColumna = lvDatos.Width / (lvDatos.Columns.Count - 1);
                     lvDatos.Columns[0].Width = 0;
+                    if (tamañoColumna < 65)
+                        tamañoColumna = 65;
                     for (int i = 1; i < lvDatos.Columns.Count; i++)
                     {
                         lvDatos.Columns[i].Width = tamañoColumna;
@@ -216,12 +218,13 @@ namespace GoodInventory
                             lvDatos.Columns[i].TextAlign = HorizontalAlignment.Center;
                         }
                         catch (InvalidOperationException) { }
-                        //}
                     }
                 }
                 else
                 {
                     int tamañoColumna = lvDatos.Width / lvDatos.Columns.Count;
+                    if (tamañoColumna < 65)
+                        tamañoColumna = 65;
                     for (int i = 0; i < lvDatos.Columns.Count; i++)
                     {
                         lvDatos.Columns[i].Width = tamañoColumna;
@@ -230,7 +233,6 @@ namespace GoodInventory
                             lvDatos.Columns[i].TextAlign = HorizontalAlignment.Center;
                         }
                         catch (InvalidOperationException) { }
-                        //}
                     }
                 }
             }
@@ -271,10 +273,6 @@ namespace GoodInventory
             row = 0;
             col = 0;
             btnDelFila.Text = "borrar fila".ToUpper();
-            //OleDbDataReader dr;
-            //comando = new OleDbCommand("SELECT * FROM ALL_CONS_COLUMNS A JOIN ALL_CONSTRAINTS C ON A.CONSTRAINT_NAME = C.CONSTRAINT_NAME WHERE C.TABLE_NAME = < " + tablaActual + " > AND C.CONSTRAINT_TYPE = 'P'",fi.conexion);
-            //dr = comando.ExecuteReader();
-            //this.Text = dr.GetString(0);
             List<string> listaPK = getClavesPrimariasNombres(tablaActual, fi.conexion);
             cp = "";
             if (listaPK.Count() > 0)
@@ -352,7 +350,7 @@ namespace GoodInventory
                 ordenPor = "desc";
                 this.cabecera = "";
             }
-            da = new OleDbDataAdapter("select * from " + tablaActual + " order by " + cabecera + " " + ordenPor, fi.conexion);
+            da = new OleDbDataAdapter("select * from " + tablaActual + " order by " + "`" + cabecera + "` " + ordenPor, fi.conexion);
             da.Fill(ds, tablaActual);
             //Foreach que carga la cabecera
             foreach (DataTable t in ds.Tables)
@@ -699,7 +697,6 @@ namespace GoodInventory
             }
         }
 
-
         /// <summary>
         /// Guarda una nueva tabla cogiendo el nombre de un textbox del formulario "FormularioNuevaTabla"
         /// </summary>
@@ -776,22 +773,6 @@ namespace GoodInventory
                 }
                 fec.lblInfo.Text = "Campo actual: " + FECnombreCampo;
                 fec.lblInfo.Location = new Point(fec.Width / 2 - fec.lblInfo.Size.Width / 2, fec.lblInfo.Location.Y); ;
-                //da = new OleDbDataAdapter("select * from " + tablaActual, fi.conexion);
-                //lista = new ListViewItem();
-                //da.Fill(ds, tablaActual);
-                //DataTable t = ds.Tables[tablaActual];
-                //foreach (DataColumn c in t.Columns)
-                //{
-                //    if (c.ColumnName == nombreColumna)
-                //    {
-                //        columnaTipoDato = c.DataType.ToString();
-                //    }
-                //}
-                //fed = new FormularioEditarDato();
-                //fed.tbDato.Text = value;
-                //fed.btnGuardar.Click += new EventHandler(this.FEDbtnGuardar_Click);
-                //fed.ShowDialog();
-
             }
             catch (NullReferenceException) { }
         }
@@ -828,9 +809,9 @@ namespace GoodInventory
                 {
                     try
                     {
-                        comando = new OleDbCommand("alter table " + tablaActual + " add " + fec.tbNombreCampo.Text + " int IDENTITY(1, 1) NOT NULL", fi.conexion);
+                        comando = new OleDbCommand("alter table " + tablaActual + " add `" + fec.tbNombreCampo.Text.Trim(' ') + "` int IDENTITY(1, 1) NOT NULL", fi.conexion);
                         comando.ExecuteNonQuery();
-                        comando = new OleDbCommand("alter table " + tablaActual + " add primary key (" + fec.tbNombreCampo.Text + ")", fi.conexion);
+                        comando = new OleDbCommand("alter table " + tablaActual + " add primary key (`" + fec.tbNombreCampo.Text.Trim(' ') + "`)", fi.conexion);
                         comando.ExecuteNonQuery();
                         cargarTabla();
                         FECactualizarListaCampos();
@@ -850,7 +831,7 @@ namespace GoodInventory
                         {
                             if (ex.ErrorCode.ToString() == "-2147467259")
                             {
-                                mensaje = "No puede añadir el campo '" + fec.tbNombreCampo.Text + "' como clave primaria de la tabla \"" + tablaActual + "\" porque ésta ya tiene una clave primaria.";
+                                mensaje = "No puede añadir el campo '" + fec.tbNombreCampo.Text.Trim(' ') + "' como clave primaria de la tabla \"" + tablaActual + "\" porque ésta ya tiene una clave primaria.";
                             }
                             else
                             {
@@ -873,7 +854,7 @@ namespace GoodInventory
 
                     try
                     {
-                        comando = new OleDbCommand("alter table " + tablaActual + " add " + fec.tbNombreCampo.Text + " " + tipoDato, fi.conexion);
+                        comando = new OleDbCommand("alter table " + tablaActual + " add `" + fec.tbNombreCampo.Text.Trim(' ') + "` " + tipoDato, fi.conexion);
                         comando.ExecuteNonQuery();
                         cargarTabla();
                         FECactualizarListaCampos();
@@ -929,11 +910,13 @@ namespace GoodInventory
             {
                 if (fec.tbNombreCampo.Text == "")
                 {
-                    comando = new OleDbCommand("alter table " + tablaActual + " drop " + FECnombreCampo, fi.conexion);
+                    if (FECnombreCampo != "")
+                        comando = new OleDbCommand("alter table " + tablaActual + " drop `" + FECnombreCampo.Trim(' ') + "`", fi.conexion);
                 }
                 else
                 {
-                    comando = new OleDbCommand("alter table " + tablaActual + " drop " + fec.tbNombreCampo.Text, fi.conexion);
+                    if (fec.tbNombreCampo.Text != "")
+                        comando = new OleDbCommand("alter table " + tablaActual + " drop `" + fec.tbNombreCampo.Text.Trim(' ') + "`", fi.conexion);
                 }
                 fec.lblInfo.Text = "";
                 comando.ExecuteNonQuery();
@@ -948,7 +931,11 @@ namespace GoodInventory
                 {
                     if (ex.Message[3] == 'h')
                     {
-                        mensaje = "El campo '" + fec.tbNombreCampo.Text + "' no existe en la tabla \"" + tablaActual + "\".";
+                        if (fec.tbNombreCampo.Text != "")
+                        {
+                            mensaje = "El campo '" + fec.tbNombreCampo.Text.Trim(' ') + "' no existe en la tabla \"" + tablaActual + "\".";
+                            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
@@ -960,8 +947,8 @@ namespace GoodInventory
                         {
                             mensaje = "No se puede eliminar este campo de la tabla \"" + tablaActual + "\" porque la está utilizando otro proceso";
                         }
+                        MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -987,9 +974,10 @@ namespace GoodInventory
                         {
                             try
                             {
-                                comando = new OleDbCommand("alter table " + tablaActual + " drop " + c.ColumnName, fi.conexion);
+                                comando = new OleDbCommand("alter table " + tablaActual + " drop `" + c.ColumnName + "`", fi.conexion);
                                 comando.ExecuteNonQuery();
                                 fec.lblInfo.Text = "";
+
                             }
                             catch (OleDbException ex)
                             {
@@ -1005,7 +993,10 @@ namespace GoodInventory
                             }
                         }
                     }
+                    comando = new OleDbCommand("delete from " + tablaActual, fi.conexion);
+                    comando.ExecuteNonQuery();
                     FECactualizarListaCampos();
+                    cargarTabla();
                 }
                 catch (OleDbException ex)
                 {
@@ -1023,10 +1014,8 @@ namespace GoodInventory
             if (fec.tbNombreCampo.Text != "" || FECnombreCampo != "")
             {
                 continuar = false;
-                //try
-                //{
                 fed = new FormularioEditarDato();
-                fed.Text = "Editar campo \"" + FECnombreCampo + "\"";
+
                 if (fec.tbNombreCampo.Text != "")
                 {
                     for (int i = 0; i < fec.lvCampos.Items.Count; i++)
@@ -1048,6 +1037,7 @@ namespace GoodInventory
                 {
                     fed.tbDato.Text = FECnombreCampo;
                 }
+                fed.Text = "Editar campo \"" + fed.tbDato.Text + "\"";
                 fed.btnGuardar.Click += new EventHandler(FECrenombrarCampo);
                 if (fec.tbNombreCampo.Text != "")
                 {
@@ -1067,22 +1057,6 @@ namespace GoodInventory
                 cargarTabla();
                 lbTablas.SelectedIndex = lbTablas.Items.IndexOf(tablaActual);
                 FECactualizarListaCampos();
-                //}
-                //catch (OleDbException ex)
-                //{
-                //    //-2147217887 -> error campo existente
-                //    //-2147217900 -> error tabla ocupada
-                //    string mensaje;
-                //    if (ex.ErrorCode.ToString() == "-2147217887")
-                //    {
-                //        mensaje = "El campo \"" + fec.tbNombreCampo.Text + "\" ya existe en esta tabla, por lo que no se puede añadir de nuevo.";
-                //    }
-                //    else
-                //    {
-                //        mensaje = "No se pueden actualizar los campos de la tabla \"" + tablaActual + "\" porque la está utilizando otro proceso";
-                //    }
-                //    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
             }
         }
 
@@ -1227,40 +1201,22 @@ namespace GoodInventory
         {
             if (value != fed.tbDato.Text)
             {
-                //Intento de actualizar los datos de otra manera, pero este no funciona porque el la tabla del dataset no reconoce la clave primaria.
-                //for (int i = 0; i < ds.Tables[tablaActual].Rows.Count; i++)
-                //{
-                //    if (i == row)
-                //    {
-                //        if (columnaTipoDato == "System.Int32")
-                //        {
-                //            ds.Tables[tablaActual].Rows[i].SetField(col, Int32.Parse(fed.tbDato.Text));
-                //        }
-                //        else
-                //        {
-                //            ds.Tables[tablaActual].Rows[i].SetField(col, fed.tbDato.Text);
-                //        }
-                //    }
-                //}
-                //da.Update(ds, tablaActual);
-                //fed.Close();
-                //cargarTabla();
                 try
                 {
                     if (columnaTipoDato == "System.Int32")
                     {
                         if (fed.tbDato.Text == "")
                         {
-                            comando = new OleDbCommand("update " + tablaActual + " SET " + nombreColumna + "=" + "null" + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
+                            comando = new OleDbCommand("update " + tablaActual + " SET " + "`" + nombreColumna + "`" + "=" + "null" + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
                         }
                         else
                         {
-                            comando = new OleDbCommand("update " + tablaActual + " SET " + nombreColumna + "=" + fed.tbDato.Text + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
+                            comando = new OleDbCommand("update " + tablaActual + " SET " + "`" + nombreColumna + "`" + "=" + fed.tbDato.Text + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
                         }
                     }
                     else
                     {
-                        comando = new OleDbCommand("update " + tablaActual + " set " + nombreColumna + "=" + "'" + fed.tbDato.Text + "'" + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
+                        comando = new OleDbCommand("update " + tablaActual + " set " + "`" + nombreColumna + "`" + "=" + "'" + fed.tbDato.Text + "'" + " where " + cp + "=" + valorFilaClavePrimaria, fi.conexion);
                     }
                     comando.ExecuteNonQuery();
                     cargarTabla();
